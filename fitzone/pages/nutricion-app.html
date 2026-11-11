@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nutrición — FitZone</title>
+<link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body data-page="nutricion-app">
+<main class="app-main" id="pageContent">
+  <div class="app-header">
+    <div>
+      <h1>Nutrición</h1>
+      <p>Objetivos de calorías y macros, y seguimiento de lo que comes hoy. Esto es una guía orientativa, no un tratamiento médico.</p>
+    </div>
+    <button class="btn btn-primary" id="openAddMeal">+ Registrar comida</button>
+  </div>
+
+  <div class="dash-grid">
+    <section class="dash-card span-4">
+      <h3>Calorías de hoy</h3>
+      <div class="metric-row"><span class="value" id="caloriesConsumed">0</span><span class="unit">/ <span id="caloriesTarget">—</span> kcal</span></div>
+      <div class="progress-track" style="margin-top:var(--space-4)"><div class="progress-fill" id="caloriesBar" style="width:0%"></div></div>
+    </section>
+
+    <section class="dash-card span-8">
+      <h3>Macronutrientes de hoy</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)">
+        <div>
+          <div class="metric-row"><span class="value" style="font-size:1.4rem" id="proteinConsumed">0</span><span class="unit">/ <span id="proteinTarget">—</span> g</span></div>
+          <div class="progress-track" style="margin-top:var(--space-2)"><div class="progress-fill" id="proteinBar" style="width:0%"></div></div>
+          <p style="font-size:var(--fs-xs);color:var(--text-muted);margin-top:var(--space-1)">Proteína</p>
+        </div>
+        <div>
+          <div class="metric-row"><span class="value" style="font-size:1.4rem" id="carbsConsumed">0</span><span class="unit">/ <span id="carbsTarget">—</span> g</span></div>
+          <div class="progress-track" style="margin-top:var(--space-2)"><div class="progress-fill" id="carbsBar" style="width:0%"></div></div>
+          <p style="font-size:var(--fs-xs);color:var(--text-muted);margin-top:var(--space-1)">Carbohidratos</p>
+        </div>
+        <div>
+          <div class="metric-row"><span class="value" style="font-size:1.4rem" id="fatConsumed">0</span><span class="unit">/ <span id="fatTarget">—</span> g</span></div>
+          <div class="progress-track" style="margin-top:var(--space-2)"><div class="progress-fill" id="fatBar" style="width:0%"></div></div>
+          <p style="font-size:var(--fs-xs);color:var(--text-muted);margin-top:var(--space-1)">Grasas</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="dash-card span-12">
+      <h3>Comidas registradas hoy</h3>
+      <div style="overflow-x:auto">
+        <table class="data-table">
+          <thead><tr><th>Comida</th><th>Calorías</th><th>Proteína (g)</th><th>Carbohidratos (g)</th><th>Grasas (g)</th></tr></thead>
+          <tbody id="mealsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="dash-card span-12">
+      <h3>Ejemplos de comidas (demostración)</h3>
+      <div class="grid-trainers" style="grid-template-columns:repeat(4,1fr)">
+        <div class="list-row" style="display:block"><strong>Desayuno proteico</strong><p style="font-size:var(--fs-xs);margin-top:var(--space-2)">Huevos, avena y fruta — ~520 kcal, 38g proteína.</p></div>
+        <div class="list-row" style="display:block"><strong>Almuerzo balanceado</strong><p style="font-size:var(--fs-xs);margin-top:var(--space-2)">Pollo, arroz y vegetales — ~710 kcal, 48g proteína.</p></div>
+        <div class="list-row" style="display:block"><strong>Snack pre-entreno</strong><p style="font-size:var(--fs-xs);margin-top:var(--space-2)">Yogur griego y fruta — ~220 kcal, 18g proteína.</p></div>
+        <div class="list-row" style="display:block"><strong>Cena ligera</strong><p style="font-size:var(--fs-xs);margin-top:var(--space-2)">Pescado y ensalada — ~480 kcal, 40g proteína.</p></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="modal-backdrop" id="mealModal" hidden>
+  <div class="modal">
+    <h2 style="font-size:var(--fs-h3);margin-bottom:var(--space-6)">Registrar comida</h2>
+    <div id="mealAlert"></div>
+    <form id="mealForm">
+      <div class="form-field">
+        <label for="mealLabel">Comida</label>
+        <select id="mealLabel" style="width:100%;background:var(--bg-elevated);border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);min-height:48px">
+          <option>Desayuno</option><option>Almuerzo</option><option>Cena</option><option>Snack</option>
+        </select>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)">
+        <div class="form-field"><label for="mealCalories">Calorías</label><input type="number" id="mealCalories" required></div>
+        <div class="form-field"><label for="mealProtein">Proteína (g)</label><input type="number" id="mealProtein"></div>
+        <div class="form-field"><label for="mealCarbs">Carbohidratos (g)</label><input type="number" id="mealCarbs"></div>
+        <div class="form-field"><label for="mealFat">Grasas (g)</label><input type="number" id="mealFat"></div>
+      </div>
+      <div style="display:flex;gap:var(--space-3)">
+        <button type="button" class="btn btn-secondary btn-block" id="cancelMeal">Cancelar</button>
+        <button type="submit" class="btn btn-primary btn-block" id="saveMealBtn">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../js/vendor/supabase.min.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/supabase-client.js"></script>
+<script src="../js/auth-guard.js"></script>
+<script src="../js/db.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/form-utils.js"></script>
+<script src="../js/nutricion-app.js" defer></script>
+</body>
+</html>

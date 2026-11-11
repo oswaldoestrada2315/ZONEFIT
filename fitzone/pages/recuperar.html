@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recuperar contraseña — FitZone</title>
+<link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="auth-shell">
+  <div class="auth-card" id="requestCard">
+    <a href="login.html" class="auth-card__back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      Volver a iniciar sesión
+    </a>
+    <div class="auth-card__logo">
+      <span class="logo"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" class="logo__mark"><path d="M2 12h3M19 12h3M5 8v8M19 8v8M8 12h8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>FitZone</span>
+    </div>
+    <h1>Recupera tu contraseña</h1>
+    <p class="auth-card__sub">Te enviaremos un enlace de un solo uso para restablecerla.</p>
+
+    <div id="formAlert"></div>
+
+    <form id="recoverForm" novalidate>
+      <div class="form-field">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" autocomplete="email" required>
+        <div class="form-field__error" id="emailError"></div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Enviar enlace</button>
+    </form>
+  </div>
+
+  <!-- Pantalla de confirmación neutral: no revela si el correo existe o no -->
+  <div class="auth-card" id="confirmCard" hidden>
+    <div class="auth-card__logo">
+      <span class="logo"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" class="logo__mark"><path d="M2 12h3M19 12h3M5 8v8M19 8v8M8 12h8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>FitZone</span>
+    </div>
+    <h1>Revisa tu correo</h1>
+    <p class="auth-card__sub">Si existe una cuenta con ese correo, te llegará un enlace para crear una nueva contraseña. El enlace vence por seguridad después de un tiempo.</p>
+    <a href="login.html" class="btn btn-secondary btn-block">Volver a iniciar sesión</a>
+  </div>
+</div>
+
+<script src="../js/vendor/supabase.min.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/supabase-client.js"></script>
+<script src="../js/form-utils.js"></script>
+<script src="../js/auth-recover.js"></script>
+</body>
+</html>

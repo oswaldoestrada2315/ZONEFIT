@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil — FitZone</title>
+<link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body data-page="perfil">
+<main class="app-main" id="pageContent">
+  <div class="app-header">
+    <div>
+      <h1>Perfil y ajustes</h1>
+      <p>Gestiona tu información personal, objetivos, notificaciones y seguridad de cuenta.</p>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab is-active" data-tab="personal">Información personal</button>
+    <button class="tab" data-tab="objetivos">Objetivos</button>
+    <button class="tab" data-tab="seguridad">Seguridad</button>
+    <button class="tab" data-tab="notificaciones">Notificaciones</button>
+  </div>
+
+  <section data-panel="personal" style="max-width:560px">
+    <div id="personalAlert"></div>
+    <form id="personalForm">
+      <div class="form-field"><label for="pName">Nombre completo</label><input type="text" id="pName"></div>
+      <div class="form-field"><label for="pEmail">Correo electrónico</label><input type="email" id="pEmail" disabled></div>
+      <div class="form-field"><label for="pHeight">Estatura (cm)</label><input type="number" id="pHeight"></div>
+      <button type="submit" class="btn btn-primary" id="savePersonalBtn">Guardar cambios</button>
+    </form>
+  </section>
+
+  <section data-panel="objetivos" hidden style="max-width:560px">
+    <div id="goalsAlert"></div>
+    <form id="goalsForm">
+      <div class="form-field">
+        <label for="pGoal">Objetivo principal</label>
+        <select id="pGoal" style="width:100%;background:var(--bg-elevated);border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);min-height:48px">
+          <option value="perder_peso">Perder peso</option>
+          <option value="ganar_musculo">Ganar músculo</option>
+          <option value="resistencia">Mejorar resistencia</option>
+          <option value="mantenimiento">Mantenimiento</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="pExperience">Nivel de experiencia</label>
+        <select id="pExperience" style="width:100%;background:var(--bg-elevated);border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);min-height:48px">
+          <option value="principiante">Principiante</option>
+          <option value="intermedio">Intermedio</option>
+          <option value="avanzado">Avanzado</option>
+        </select>
+      </div>
+      <div class="form-field"><label for="pAvailability">Disponibilidad semanal (días)</label><input type="number" id="pAvailability" min="1" max="7"></div>
+      <button type="submit" class="btn btn-primary" id="saveGoalsBtn">Guardar objetivos</button>
+    </form>
+  </section>
+
+  <section data-panel="seguridad" hidden style="max-width:560px">
+    <div id="securityAlert"></div>
+    <form id="passwordForm">
+      <div class="form-field"><label for="newPassword">Nueva contraseña</label><input type="password" id="newPassword" minlength="8"></div>
+      <div class="form-field"><label for="confirmNewPassword">Confirmar nueva contraseña</label><input type="password" id="confirmNewPassword"></div>
+      <button type="submit" class="btn btn-primary" id="savePasswordBtn">Actualizar contraseña</button>
+    </form>
+    <div style="margin-top:var(--space-8);padding-top:var(--space-8);border-top:1px solid var(--border-soft)">
+      <h3 style="margin-bottom:var(--space-3)">Cerrar sesión</h3>
+      <p style="font-size:var(--fs-small);margin-bottom:var(--space-4)">Esto cerrará tu sesión en este dispositivo.</p>
+      <button class="btn btn-secondary" id="profileLogoutBtn" style="color:var(--error)">Cerrar sesión</button>
+    </div>
+  </section>
+
+  <section data-panel="notificaciones" hidden style="max-width:560px">
+    <div class="dash-card">
+      <label class="form-check" style="margin-bottom:var(--space-4)"><input type="checkbox" checked><span>Recordatorios de entrenamiento</span></label>
+      <label class="form-check" style="margin-bottom:var(--space-4)"><input type="checkbox" checked><span>Resumen semanal de progreso</span></label>
+      <label class="form-check" style="margin-bottom:var(--space-4)"><input type="checkbox"><span>Novedades y promociones de FitZone</span></label>
+      <p style="font-size:var(--fs-xs);color:var(--text-muted);margin-top:var(--space-4)">El envío real de notificaciones requiere un servicio de correo/push configurado en el backend — esta pantalla define la preferencia, que se guarda en tu perfil.</p>
+    </div>
+  </section>
+</main>
+
+<script src="../js/vendor/supabase.min.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/supabase-client.js"></script>
+<script src="../js/auth-guard.js"></script>
+<script src="../js/db.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/form-utils.js"></script>
+<script src="../js/perfil.js" defer></script>
+</body>
+</html>

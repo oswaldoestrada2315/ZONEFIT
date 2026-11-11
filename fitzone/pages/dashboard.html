@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — FitZone</title>
+<link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body data-page="dashboard">
+
+<main class="app-main" id="pageContent">
+  <div class="app-header">
+    <div>
+      <h1 id="greeting">Hola 👋</h1>
+      <p>Este es el resumen de tu actividad. Todo lo que ves aquí se actualiza con tus propios entrenamientos.</p>
+    </div>
+    <a href="rutinas.html" class="btn btn-primary">+ Nueva rutina</a>
+  </div>
+
+  <div class="dash-grid">
+
+    <section class="dash-card span-4">
+      <h3>Peso corporal</h3>
+      <div class="metric-row"><span class="value" id="metricWeight">—</span><span class="unit">kg</span></div>
+      <div class="metric-delta" id="metricWeightDelta"></div>
+      <div style="margin-top:var(--space-4)"><a href="progreso.html" class="btn-ghost" style="font-size:var(--fs-small)">Ver historial completo →</a></div>
+    </section>
+
+    <section class="dash-card span-4">
+      <h3>Objetivo activo</h3>
+      <div id="goalBox">
+        <p style="font-size:var(--fs-small)">Cargando objetivo…</p>
+      </div>
+    </section>
+
+    <section class="dash-card span-4">
+      <h3>Rutina actual</h3>
+      <div id="routineBox">
+        <p style="font-size:var(--fs-small)">Cargando rutina…</p>
+      </div>
+    </section>
+
+    <section class="dash-card span-7">
+      <h3>Accesos rápidos</h3>
+      <div class="quick-actions">
+        <a href="entrenamiento.html" class="quick-action">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12h3M19 12h3M5 8v8M19 8v8M8 12h8"/></svg>
+          <strong>Registrar entrenamiento</strong>
+          <span style="color:var(--text-muted);font-size:var(--fs-xs)">Marca series, repeticiones y peso</span>
+        </a>
+        <a href="progreso.html" class="quick-action">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9M11 19V5M18 19v-7"/></svg>
+          <strong>Registrar medidas</strong>
+          <span style="color:var(--text-muted);font-size:var(--fs-xs)">Peso, cintura y otras medidas</span>
+        </a>
+        <a href="nutricion-app.html" class="quick-action">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 20c8 0 14-6 14-14 0 0-11-1-14 7-2 5 0 7 0 7z"/></svg>
+          <strong>Registrar comida</strong>
+          <span style="color:var(--text-muted);font-size:var(--fs-xs)">Calorías y macros de hoy</span>
+        </a>
+        <a href="calculadoras.html" class="quick-action">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01"/></svg>
+          <strong>Calcular IMC / TMB</strong>
+          <span style="color:var(--text-muted);font-size:var(--fs-xs)">Estimaciones rápidas</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="dash-card span-5">
+      <h3>Próximo entrenamiento</h3>
+      <div id="nextWorkoutBox">
+        <p style="font-size:var(--fs-small)">Cargando…</p>
+      </div>
+    </section>
+
+    <section class="dash-card span-12">
+      <h3>Notificaciones</h3>
+      <div class="list-row">
+        <div class="list-row__main"><strong>Tu plan Pro se renueva pronto</strong><span>Membresía · hace 2 días</span></div>
+        <a href="membresias.html" class="btn-ghost" style="font-size:var(--fs-xs)">Ver →</a>
+      </div>
+      <div class="list-row">
+        <div class="list-row__main"><strong>Nuevo artículo: técnica de sentadilla</strong><span>Consejos · hace 4 días</span></div>
+        <a href="consejos.html" class="btn-ghost" style="font-size:var(--fs-xs)">Leer →</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script src="../js/vendor/supabase.min.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/supabase-client.js"></script>
+<script src="../js/auth-guard.js"></script>
+<script src="../js/data/exercises-demo.js"></script>
+<script src="../js/db.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/dashboard.js" defer></script>
+</body>
+</html>

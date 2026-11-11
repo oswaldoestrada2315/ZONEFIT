@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programas — FitZone</title>
+<link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/public.css">
+</head>
+<body data-public-page="programas">
+<main class="public-main" id="pageContent">
+  <div class="container">
+    <div class="public-hero">
+      <p class="eyebrow" style="justify-content:center">Catálogo completo</p>
+      <h1>Programas de entrenamiento</h1>
+      <p>Fuerza, hipertrofia, cardio, movilidad y funcional — cada disciplina con ejercicios, técnica y progresión. Inicia sesión para registrar tu progreso en cada uno.</p>
+    </div>
+
+    <div class="filter-row" id="progFilters">
+      <button class="filter-pill is-active" data-d="">Todos</button>
+      <button class="filter-pill" data-d="fuerza">Fuerza</button>
+      <button class="filter-pill" data-d="hipertrofia">Hipertrofia</button>
+      <button class="filter-pill" data-d="cardio">Cardio</button>
+      <button class="filter-pill" data-d="movilidad">Movilidad</button>
+      <button class="filter-pill" data-d="funcional">Funcional</button>
+    </div>
+
+    <div class="dash-grid" id="progGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6)"></div>
+
+    <div class="final-cta" style="margin-top:var(--space-16)">
+      <h2 style="font-size:var(--fs-h1)">¿Listo para empezar?</h2>
+      <p>Crea tu cuenta gratis y arma tu rutina con estos ejercicios.</p>
+      <div class="final-cta__actions">
+        <a href="registro.html" class="btn btn-primary">Crear cuenta</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<link rel="stylesheet" href="../css/app.css">
+<script src="../js/data/exercises-demo.js"></script>
+<script src="../js/public-shell.js"></script>
+<script>
+(function(){
+  const DIFF = {principiante:'Principiante',intermedio:'Intermedio',avanzado:'Avanzado'};
+  function render(d){
+    const list = FZ_DEMO_EXERCISES.filter(e => !d || e.discipline === d);
+    document.getElementById('progGrid').innerHTML = list.map(ex => `
+      <div class="dash-card" style="background:var(--bg-secondary)">
+        <h3 style="margin-bottom:var(--space-1)">${ex.name}</h3>
+        <p style="font-size:var(--fs-xs);color:var(--yellow);font-weight:700;text-transform:uppercase">${ex.muscle_group}</p>
+        <p style="font-size:var(--fs-small);margin-top:var(--space-3)">${ex.description||''}</p>
+        <span class="badge" style="margin-top:var(--space-4)">${DIFF[ex.difficulty]||ex.difficulty}</span>
+      </div>
+    `).join('');
+  }
+  document.querySelectorAll('#progFilters .filter-pill').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('#progFilters .filter-pill').forEach(b=>b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      render(btn.dataset.d);
+    });
+  });
+  render('');
+})();
+</script>
+</body>
+</html>

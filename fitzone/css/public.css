@@ -1,0 +1,37 @@
+/* Páginas públicas (programas, entrenadores, membresías, nutrición institucional) */
+.public-main {
+  padding-top: calc(var(--space-24) + var(--space-8));
+  padding-bottom: var(--space-24);
+}
+.public-hero {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto var(--space-16);
+}
+.public-hero h1 { font-size: var(--fs-h1); margin-bottom: var(--space-4); }
+.public-hero p { font-size: 1.05rem; }
+
+.filter-row {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-10);
+  justify-content: center;
+}
+.filter-pill {
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-soft);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.filter-pill.is-active { background: var(--yellow); color: var(--bg-primary); border-color: var(--yellow); }
+.filter-pill:hover:not(.is-active) { border-color: var(--yellow); color: var(--text-primary); }
+
+.faq-item { border-bottom: 1px solid var(--border-soft); padding-block: var(--space-5); }
+.faq-item summary { cursor: pointer; font-weight: 700; display: flex; justify-content: space-between; align-items: center; list-style: none; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; color: var(--yellow); font-size: 1.3rem; }
+.faq-item[open] summary::after { content: '–'; }
+.faq-item p { margin-top: var(--space-3); font-size: var(--fs-small); }

@@ -1,0 +1,2 @@
+/* Ajustes específicos de la landing que no pertenecen al sistema base */
+.hero__fallback-img { z-index: 0; }

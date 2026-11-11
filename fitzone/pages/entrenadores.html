@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrenadores — FitZone</title>
+<link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/public.css">
+</head>
+<body data-public-page="entrenadores">
+<main class="public-main" id="pageContent">
+  <div class="container">
+    <div class="public-hero">
+      <p class="eyebrow" style="justify-content:center">Nuestro equipo</p>
+      <h1>Entrenadores certificados</h1>
+      <p>Profesionales especializados en fuerza, hipertrofia, movilidad y acondicionamiento. Cada plan de FitZone incluye acompañamiento de alguno de ellos.</p>
+    </div>
+
+    <div class="filter-row" id="trainerFilters">
+      <button class="filter-pill is-active" data-s="">Todas las especialidades</button>
+      <button class="filter-pill" data-s="Fuerza">Fuerza</button>
+      <button class="filter-pill" data-s="Hipertrofia">Hipertrofia</button>
+      <button class="filter-pill" data-s="Movilidad">Movilidad</button>
+      <button class="filter-pill" data-s="Cardio">Cardio</button>
+    </div>
+
+    <div class="grid-trainers" id="trainerGrid" style="margin-top:var(--space-10)"></div>
+  </div>
+</main>
+
+<script>
+window.FZ_TRAINERS = [
+  {name:'Camila Rojas', spec:'Fuerza', bio:'10 años guiando atletas de powerlifting y levantamiento olímpico.', img:'../assets/img/trainer-1.jpg'},
+  {name:'Mateo Herrera', spec:'Hipertrofia', bio:'Especialista en periodización para ganancia de masa muscular.', img:'../assets/img/trainer-2.jpg'},
+  {name:'Valentina Cruz', spec:'Movilidad', bio:'Fisioterapeuta deportiva enfocada en prevención de lesiones.', img:'../assets/img/trainer-3.jpg'},
+  {name:'Andrés Molina', spec:'Cardio', bio:'Entrenador de resistencia y acondicionamiento metabólico.', img:'../assets/img/trainer-4.jpg'},
+  {name:'Laura Jiménez', spec:'Fuerza', bio:'Coach de fuerza funcional para todos los niveles.', img:'../assets/img/trainer-1.jpg'},
+  {name:'Diego Salas', spec:'Hipertrofia', bio:'Enfocado en técnica y progresión segura de cargas.', img:'../assets/img/trainer-2.jpg'}
+];
+(function(){
+  function render(spec){
+    const list = FZ_TRAINERS.filter(t => !spec || t.spec === spec);
+    document.getElementById('trainerGrid').innerHTML = list.map(t => `
+      <div class="trainer-card">
+        <div class="trainer-card__media"><img src="${t.img}" alt="${t.name}" loading="lazy"></div>
+        <div class="trainer-card__body">
+          <h3>${t.name}</h3>
+          <p class="trainer-card__spec">${t.spec}</p>
+          <p class="trainer-card__bio">${t.bio}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+  document.querySelectorAll('#trainerFilters .filter-pill').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('#trainerFilters .filter-pill').forEach(b=>b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      render(btn.dataset.s);
+    });
+  });
+  render('');
+})();
+</script>
+<script src="../js/public-shell.js"></script>
+</body>
+</html>

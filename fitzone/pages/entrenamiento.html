@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrenamiento — FitZone</title>
+<link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body data-page="entrenamiento">
+<main class="app-main" id="pageContent">
+  <div class="app-header">
+    <div>
+      <h1>Entrenamiento</h1>
+      <p>Explora ejercicios por disciplina y registra tus series con peso y repeticiones reales.</p>
+    </div>
+  </div>
+
+  <div class="tabs" id="disciplineTabs">
+    <button class="tab is-active" data-discipline="">Todos</button>
+    <button class="tab" data-discipline="fuerza">Fuerza</button>
+    <button class="tab" data-discipline="hipertrofia">Hipertrofia</button>
+    <button class="tab" data-discipline="cardio">Cardio</button>
+    <button class="tab" data-discipline="movilidad">Movilidad</button>
+    <button class="tab" data-discipline="funcional">Funcional</button>
+  </div>
+
+  <div class="dash-grid" id="exerciseGrid"></div>
+</main>
+
+<!-- Modal: detalle + registrar serie -->
+<div class="modal-backdrop" id="exerciseModal" hidden>
+  <div class="modal" style="max-width:520px">
+    <h2 id="exModalName" style="font-size:var(--fs-h3);margin-bottom:var(--space-2)"></h2>
+    <p id="exModalMeta" style="font-size:var(--fs-xs);color:var(--yellow);font-weight:700;margin-bottom:var(--space-4)"></p>
+    <p id="exModalDesc" style="font-size:var(--fs-small);margin-bottom:var(--space-3)"></p>
+    <p id="exModalTechnique" style="font-size:var(--fs-small);margin-bottom:var(--space-6)"></p>
+
+    <div id="logAlert"></div>
+    <form id="logForm">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-3)">
+        <div class="form-field"><label for="logSet">Serie #</label><input type="number" id="logSet" min="1" value="1" required></div>
+        <div class="form-field"><label for="logReps">Reps</label><input type="number" id="logReps" min="1" required></div>
+        <div class="form-field"><label for="logWeight">Peso (kg)</label><input type="number" step="0.5" id="logWeight"></div>
+      </div>
+      <div style="display:flex;gap:var(--space-3)">
+        <button type="button" class="btn btn-secondary btn-block" id="closeExModal">Cerrar</button>
+        <button type="submit" class="btn btn-primary btn-block" id="logSetBtn">Registrar serie</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../js/vendor/supabase.min.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/supabase-client.js"></script>
+<script src="../js/auth-guard.js"></script>
+<script src="../js/data/exercises-demo.js"></script>
+<script src="../js/db.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/form-utils.js"></script>
+<script src="../js/entrenamiento.js" defer></script>
+</body>
+</html>

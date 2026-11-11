@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consejos — FitZone</title>
+<link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body data-page="consejos">
+<main class="app-main" id="pageContent">
+  <div class="app-header">
+    <div>
+      <h1>Consejos y aprendizaje</h1>
+      <p>Artículos breves sobre técnica, fuerza, hipertrofia, nutrición, recuperación y hábitos.</p>
+    </div>
+  </div>
+
+  <div class="tabs" id="tipTabs">
+    <button class="tab is-active" data-cat="">Todos</button>
+    <button class="tab" data-cat="tecnica">Técnica</button>
+    <button class="tab" data-cat="nutricion">Nutrición</button>
+    <button class="tab" data-cat="recuperacion">Recuperación</button>
+    <button class="tab" data-cat="habitos">Hábitos</button>
+  </div>
+
+  <div class="dash-grid" id="tipsGrid"></div>
+</main>
+
+<div class="modal-backdrop" id="tipModal" hidden>
+  <div class="modal" style="max-width:560px">
+    <p class="badge" id="tipModalCat" style="margin-bottom:var(--space-3)"></p>
+    <h2 id="tipModalTitle" style="font-size:var(--fs-h3);margin-bottom:var(--space-4)"></h2>
+    <p id="tipModalBody" style="font-size:var(--fs-small);line-height:1.7"></p>
+    <button class="btn btn-secondary btn-block" id="closeTipModal" style="margin-top:var(--space-6)">Cerrar</button>
+  </div>
+</div>
+
+<script src="../js/vendor/supabase.min.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/supabase-client.js"></script>
+<script src="../js/auth-guard.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/consejos.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rutinas — FitZone</title>
+<link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body data-page="rutinas">
+<main class="app-main" id="pageContent">
+  <div class="app-header">
+    <div>
+      <h1>Mis rutinas</h1>
+      <p>Crea, edita y organiza tus rutinas de entrenamiento. Tu progresión y repeticiones quedan asociadas a cada una.</p>
+    </div>
+    <button class="btn btn-primary" id="openCreateRoutine">+ Nueva rutina</button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab is-active" data-tab="mias">Mis rutinas</button>
+    <button class="tab" data-tab="asistente">Asistente de creación</button>
+  </div>
+
+  <section data-panel="mias">
+    <div class="dash-grid" id="routinesGrid">
+      <p style="grid-column:span 12;font-size:var(--fs-small);color:var(--text-muted)">Cargando rutinas…</p>
+    </div>
+  </section>
+
+  <section data-panel="asistente" hidden>
+    <div class="dash-card" style="max-width:640px">
+      <h3>Crear una rutina guiada</h3>
+      <p style="font-size:var(--fs-small);margin-bottom:var(--space-6)">Responde estas preguntas y generamos una estructura inicial — luego la puedes editar libremente.</p>
+      <form id="wizardForm">
+        <div class="form-field">
+          <label for="wObjective">¿Cuál es tu objetivo principal?</label>
+          <select id="wObjective" style="width:100%;background:var(--bg-elevated);border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);min-height:48px">
+            <option value="fuerza">Ganar fuerza</option>
+            <option value="hipertrofia">Ganar músculo (hipertrofia)</option>
+            <option value="resistencia">Resistencia / cardio</option>
+            <option value="movilidad">Movilidad y flexibilidad</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="wExperience">Experiencia</label>
+          <div class="radio-pill-group">
+            <label class="radio-pill"><input type="radio" name="wExp" value="principiante" checked><span>Principiante</span></label>
+            <label class="radio-pill"><input type="radio" name="wExp" value="intermedio"><span>Intermedio</span></label>
+            <label class="radio-pill"><input type="radio" name="wExp" value="avanzado"><span>Avanzado</span></label>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="wDays">Días disponibles por semana</label>
+          <input type="number" id="wDays" min="1" max="7" value="4">
+        </div>
+        <div class="form-field">
+          <label for="wEquipment">Equipamiento disponible</label>
+          <select id="wEquipment" style="width:100%;background:var(--bg-elevated);border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);min-height:48px">
+            <option value="gimnasio_completo">Gimnasio completo</option>
+            <option value="casa_basico">Casa — equipo básico</option>
+            <option value="sin_equipo">Sin equipo</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Generar estructura de rutina</button>
+      </form>
+      <div id="wizardResult" style="margin-top:var(--space-8)"></div>
+    </div>
+  </section>
+</main>
+
+<!-- Modal crear rutina -->
+<div class="modal-backdrop" id="routineModal" hidden>
+  <div class="modal">
+    <h2 style="font-size:var(--fs-h3);margin-bottom:var(--space-6)">Nueva rutina</h2>
+    <div id="routineAlert"></div>
+    <form id="routineForm">
+      <div class="form-field">
+        <label for="rName">Nombre de la rutina</label>
+        <input type="text" id="rName" required placeholder="Ej. Fuerza — Torso/Pierna">
+      </div>
+      <div class="form-field">
+        <label for="rObjective">Objetivo</label>
+        <select id="rObjective" style="width:100%;background:var(--bg-elevated);border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);min-height:48px">
+          <option value="fuerza">Fuerza</option>
+          <option value="hipertrofia">Hipertrofia</option>
+          <option value="resistencia">Resistencia</option>
+          <option value="movilidad">Movilidad</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="rDays">Días por semana</label>
+        <input type="number" id="rDays" min="1" max="7" value="3" required>
+      </div>
+      <div style="display:flex;gap:var(--space-3)">
+        <button type="button" class="btn btn-secondary btn-block" id="cancelRoutine">Cancelar</button>
+        <button type="submit" class="btn btn-primary btn-block" id="saveRoutineBtn">Crear rutina</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../js/vendor/supabase.min.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/supabase-client.js"></script>
+<script src="../js/auth-guard.js"></script>
+<script src="../js/db.js"></script>
+<script src="../js/app-shell.js"></script>
+<script src="../js/form-utils.js"></script>
+<script src="../js/rutinas.js" defer></script>
+</body>
+</html>
